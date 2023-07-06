@@ -11,6 +11,7 @@ public class NamedBlock extends Names {
     public Block block;
 
     public final static String modid = "undergroundBiomes";
+
     public NamedBlock(String internalName) {
         super(internalName);
     }
@@ -25,7 +26,7 @@ public class NamedBlock extends Names {
             throw duplicateRegistry();
         }
         //Registrar.instance.add(this,_id,_block);
-        reRegister(_id,_block);
+        reRegister(_id, _block);
     }
 
     public void reRegister(int _id, Block _block) {
@@ -36,7 +37,7 @@ public class NamedBlock extends Names {
         if (current != block) {
             //UndergroundBiomes.logger.info(this.internal() + "was missing ");
             if (current != null) {
-                throw new RuntimeException(this.internal()+ " has been replaced by "+current.toString());
+                throw new RuntimeException(this.internal() + " has been replaced by " + current);
             }
             Block.blockRegistry.addObject(id, this.internal(), _block);
         }
@@ -48,7 +49,7 @@ public class NamedBlock extends Names {
 
     public boolean matches(Item compared) {
         if (compared instanceof ItemBlock) {
-            return (((ItemBlock)compared).field_150939_a.equals(block));
+            return (((ItemBlock) compared).field_150939_a.equals(block));
         }
         return false;
     }
@@ -57,7 +58,9 @@ public class NamedBlock extends Names {
         return compared.equals(this.block());
     }
 
-    public int ID() {return Block.getIdFromBlock(block());}
+    public int ID() {
+        return Block.getIdFromBlock(block());
+    }
 
     public Item matchingItem(Block block) {
         return Item.getItemById(Block.getIdFromBlock(block));

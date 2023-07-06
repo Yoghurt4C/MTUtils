@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MTUtils.iml" filepath="$PROJECT_DIR$/.idea/MTUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MTUtils.api.iml" filepath="$PROJECT_DIR$/.idea/modules/MTUtils.api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MTUtils.ideVirtualMain.iml" filepath="$PROJECT_DIR$/.idea/modules/MTUtils.ideVirtualMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MTUtils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MTUtils.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MTUtils.patchedMc.iml" filepath="$PROJECT_DIR$/.idea/modules/MTUtils.patchedMc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MTUtils.test.iml" filepath="$PROJECT_DIR$/.idea/modules/MTUtils.test.iml" />
     </modules>
   </component>
 </project>

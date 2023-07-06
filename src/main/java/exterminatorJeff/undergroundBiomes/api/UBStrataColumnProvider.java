@@ -3,13 +3,12 @@ package exterminatorJeff.undergroundBiomes.api;
 import net.minecraft.world.chunk.IChunkProvider;
 
 /**
- *
  * @author Zeno410
  */
 public interface UBStrataColumnProvider {
-    public UBStrataColumn strataColumn(int x, int z);
+    UBStrataColumn strataColumn(int x, int z);
 
-    public IChunkProvider UBChunkProvider(IChunkProvider currentProvider);
+    IChunkProvider UBChunkProvider(IChunkProvider currentProvider);
     /* this wraps the passed chunk provider with a class that will convert stone to the appropriate
      * UB stones in chunks fetched with the provide() method.
      *
@@ -22,6 +21,6 @@ public interface UBStrataColumnProvider {
      * enough for a world to come up with the wrong provider wrapped.
      */
 
-    public boolean inChunkGenerationAllowed();
+    boolean inChunkGenerationAllowed();
     // so you can check and not have to wonder what's going on
 }

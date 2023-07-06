@@ -2,7 +2,6 @@ package exterminatorJeff.undergroundBiomes.api;
 
 
 /**
- *
  * @author Zeno410
  */
 public class NamedVanillaItem extends NamedItem {

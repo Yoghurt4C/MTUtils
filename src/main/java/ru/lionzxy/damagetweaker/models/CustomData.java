@@ -9,6 +9,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by lionzxy on 6/8/16.
@@ -84,7 +85,7 @@ public abstract class CustomData {
             jsonFile.createNewFile();
             outputStream = new FileOutputStream(jsonFile);
 
-            outputStream.write(toString().getBytes(Charset.forName("UTF-8")));
+            outputStream.write(toString().getBytes(StandardCharsets.UTF_8));
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,4 +1,3 @@
-
 package Zeno410Utils;
 
 import net.minecraft.world.WorldServer;
@@ -10,16 +9,16 @@ import java.util.logging.Logger;
 public class ConfigManager<Type extends Settings> {
     static Logger logger = new Zeno410Logger("ConfigManager").logger();
     public final static String CONFIG_DIRECTORY = "worldSpecificConfig";
-    private Configuration general;
-    private File generalConfigFile;
-    private Type settings;
+    private final Configuration general;
+    private final File generalConfigFile;
+    private final Type settings;
     private File worldConfigFile;
     private Configuration worldSpecific;
 
     public ConfigManager(Configuration general, Type settings, File generalFile) {
         this.general = general;
         this.settings = settings;
-        this.generalConfigFile  = generalFile;
+        this.generalConfigFile = generalFile;
     }
 
     private boolean usable(File tested) {
@@ -31,11 +30,11 @@ public class ConfigManager<Type extends Settings> {
     }
 
     private void setWorldConfigFile(File newFile) {
-        if ((worldConfigFile== null)||(!newFile.getAbsolutePath().equals(worldConfigFile.getAbsolutePath()))) {
+        if ((worldConfigFile == null) || (!newFile.getAbsolutePath().equals(worldConfigFile.getAbsolutePath()))) {
             worldConfigFile = newFile;
             if (usable(worldConfigFile)) {
                 // usable world
-                    logger.info(worldConfigFile.getPath());
+                logger.info(worldConfigFile.getPath());
                 if (newFile.exists()) {
                     worldSpecific = new Configuration(worldConfigFile);
                     logger.info("exists ");
@@ -59,14 +58,14 @@ public class ConfigManager<Type extends Settings> {
 
     public void setWorldFile(File newFile) {
         // this is the world save directory
-        File configDirectory = new File(newFile,CONFIG_DIRECTORY);
+        File configDirectory = new File(newFile, CONFIG_DIRECTORY);
         configDirectory.mkdir();
 
         String configName = generalConfigFile.getPath();
         String generalConfigDirectoryName = generalConfigFile.getParentFile().getPath();
-        String detailName = configName.substring(generalConfigDirectoryName.length()+1);
-        logger.info("Filename "+detailName);
-        File localConfigFile = new File(configDirectory,detailName);
+        String detailName = configName.substring(generalConfigDirectoryName.length() + 1);
+        logger.info("Filename " + detailName);
+        File localConfigFile = new File(configDirectory, detailName);
         setWorldConfigFile(localConfigFile);
     }
 

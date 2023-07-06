@@ -1,4 +1,3 @@
-
 package Zeno410Utils;
 
 import net.minecraft.block.Block;
@@ -8,7 +7,6 @@ import java.util.TreeSet;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Zeno410
  */
 public class BlockLister {
@@ -17,13 +15,13 @@ public class BlockLister {
     public void listRegistrations() {
         Set<Object> keys = Block.blockRegistry.getKeys();
         TreeSet<Object> sortedKeys = new TreeSet<Object>();
-        for (Object name: Block.blockRegistry.getKeys()) {
+        for (Object name : Block.blockRegistry.getKeys()) {
             sortedKeys.add(name);
         }
-        for (Object name: sortedKeys) {
+        for (Object name : sortedKeys) {
             Object block = Block.blockRegistry.getObject(name);
             int ID = Block.blockRegistry.getIDForObject(block);
-            logger.info(""+ID+","+name+","+block.toString());
+            logger.info(ID + "," + name + "," + block.toString());
         }
 
     }

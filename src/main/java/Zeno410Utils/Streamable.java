@@ -10,11 +10,11 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 /**
- *
  * @author Zeno410
  */
 public interface Streamable {
 
-        abstract public void readFrom(DataInput input) throws IOException ;
-        abstract public void writeTo(DataOutput output) throws IOException;
+    void readFrom(DataInput input) throws IOException;
+
+    void writeTo(DataOutput output) throws IOException;
 }

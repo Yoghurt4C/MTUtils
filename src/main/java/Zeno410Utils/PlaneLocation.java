@@ -3,7 +3,6 @@ package Zeno410Utils;
 import net.minecraft.util.ChunkCoordinates;
 
 /**
- *
  * @author Zeno410
  */
 public class PlaneLocation {
@@ -16,12 +15,12 @@ public class PlaneLocation {
     }
 
     public PlaneLocation(ChunkCoordinates coordinates) {
-        this(coordinates.posX,coordinates.posZ);
+        this(coordinates.posX, coordinates.posZ);
     }
 
     public float distance(PlaneLocation location) {
-        return ((float)(x-location.x))*((float)(x-location.x))+
-                ((float)(z-location.z))*((float)(z-location.z));
+        return ((float) (x - location.x)) * ((float) (x - location.x)) +
+                ((float) (z - location.z)) * ((float) (z - location.z));
     }
 
     public <Type extends Provider> Type closest(Iterable<Type> choices) {
@@ -29,9 +28,9 @@ public class PlaneLocation {
         float bestDistance = Float.MAX_VALUE;
         float distance;
 
-        for (Type tested: choices) {
+        for (Type tested : choices) {
             distance = this.distance(tested.planeLocation());
-            if (distance<bestDistance) {
+            if (distance < bestDistance) {
                 result = tested;
             }
         }
@@ -41,6 +40,7 @@ public class PlaneLocation {
     public abstract class Provider {
         abstract public PlaneLocation planeLocation();
     }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -61,9 +61,6 @@ public class PlaneLocation {
         if (this.x != other.x) {
             return false;
         }
-        if (this.z != other.z) {
-            return false;
-        }
-        return true;
+        return this.z == other.z;
     }
 }

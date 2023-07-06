@@ -14,13 +14,13 @@ public class DropsObject {
     public static List<DropsObject> dropsObj;
 
     public ItemStack harvestItem, block;
-    ItemStack drops[];
-    ItemStack falseDrops[];
-    int stackSizes[];
-    int stackSizesFalse[];
-    float quantyDrop[];
+    ItemStack[] drops;
+    ItemStack[] falseDrops;
+    int[] stackSizes;
+    int[] stackSizesFalse;
+    float[] quantyDrop;
 
-    public DropsObject(ItemStack harvestItem, ItemStack drops[], float quantyDrop[], ItemStack falseDrops[], ItemStack block) {
+    public DropsObject(ItemStack harvestItem, ItemStack[] drops, float[] quantyDrop, ItemStack[] falseDrops, ItemStack block) {
         this.harvestItem = harvestItem;
         this.drops = drops;
         this.quantyDrop = quantyDrop;
@@ -61,7 +61,7 @@ public class DropsObject {
     }
 
     public boolean isBlockEqual(ItemStack block) {
-        return isEqual(block,this.block);
+        return isEqual(block, this.block);
     }
 
 }

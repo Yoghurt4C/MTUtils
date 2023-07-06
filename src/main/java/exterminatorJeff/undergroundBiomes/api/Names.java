@@ -27,5 +27,7 @@ public class Names {
     }
 
     @Override
-    public String toString() {return external();}
+    public String toString() {
+        return external();
+    }
 }

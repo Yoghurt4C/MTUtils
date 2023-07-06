@@ -5,10 +5,9 @@
 package exterminatorJeff.undergroundBiomes.api;
 
 /**
- *
  * @author Zeno410
  */
 public interface UBSetProviderRegistry {
-    public void register(UndergroundBiomeSetProvider toRegister);
+    void register(UndergroundBiomeSetProvider toRegister);
 
 }

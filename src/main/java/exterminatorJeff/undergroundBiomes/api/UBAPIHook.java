@@ -1,7 +1,6 @@
 package exterminatorJeff.undergroundBiomes.api;
 
 /**
- *
  * @author Zeno410
  */
 public class UBAPIHook {

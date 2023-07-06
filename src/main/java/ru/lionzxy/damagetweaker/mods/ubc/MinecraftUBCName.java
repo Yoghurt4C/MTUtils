@@ -8,10 +8,12 @@ import Zeno410Utils.MinecraftName;
  */
 public class MinecraftUBCName extends MinecraftName {
     String local;
+
     public MinecraftUBCName(String unlocalized, String local) {
         super(unlocalized);
         this.local = local;
     }
+
     @Override
     public String localized() {
         return local;

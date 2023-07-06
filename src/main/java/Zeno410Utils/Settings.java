@@ -1,4 +1,3 @@
-
 package Zeno410Utils;
 
 import net.minecraftforge.common.config.Configuration;
@@ -15,28 +14,29 @@ import java.util.HashMap;
  * This class permits a relatively type-safe facade for the Forge Configuration system
  * to allow behind-the-scenes manipulations of the configurations; currently world-specific
  * configs and change tracking; in the future access to a GUI system.
- *
+ * <p>
  * Streaming has an implicit and not-currently-enforced contract to have a fixed order of Settings
+ *
  * @author Zeno410
  */
 abstract public class Settings implements Streamable {
-    private ArrayList<Setting> settings = new ArrayList<Setting>();
-    private HashMap<String,Category> categories = new HashMap<String,Category>();
+    private final ArrayList<Setting> settings = new ArrayList<Setting>();
+    private final HashMap<String, Category> categories = new HashMap<String, Category>();
 
     public void readFrom(Configuration source) {
-        for (Setting setting: settings) setting.readFrom(source);
+        for (Setting setting : settings) setting.readFrom(source);
     }
 
     public void copyTo(Configuration target) {
-        for (Setting setting: settings) setting.copyTo(target);
+        for (Setting setting : settings) setting.copyTo(target);
     }
 
     public void readFrom(DataInput input) throws IOException {
-        for (Setting setting: settings) setting.readFrom(input);
+        for (Setting setting : settings) setting.readFrom(input);
     }
 
     public void writeTo(DataOutput output) throws IOException {
-        for (Setting setting: settings) setting.writeTo(output);
+        for (Setting setting : settings) setting.writeTo(output);
     }
 
     public Category category(String name) {
@@ -47,12 +47,14 @@ abstract public class Settings implements Streamable {
         return result;
     }
 
-    public Category general() {return category(Configuration.CATEGORY_GENERAL);}
+    public Category general() {
+        return category(Configuration.CATEGORY_GENERAL);
+    }
 
     protected class BooleanSetting extends Setting<Boolean> {
 
-        public BooleanSetting(Category category, String key,String comment, boolean defaultValue) {
-            super(category,key,comment,defaultValue);
+        public BooleanSetting(Category category, String key, String comment, boolean defaultValue) {
+            super(category, key, comment, defaultValue);
         }
 
         public void copyTo(Configuration target) {
@@ -75,7 +77,7 @@ abstract public class Settings implements Streamable {
             set = input.readBoolean();
             value = input.readBoolean();
             defaultValue = input.readBoolean();
-            if ((oldValue ==null&&value()!=null)||(!oldValue.equals(value()))) {
+            if ((oldValue == null && value() != null) || (!oldValue.equals(value()))) {
                 update(value());
             }
         }
@@ -90,8 +92,8 @@ abstract public class Settings implements Streamable {
 
     protected class IntSetting extends Setting<Integer> {
 
-        public IntSetting(Category category, String key,String comment, Integer defaultValue) {
-            super(category,key,comment,defaultValue);
+        public IntSetting(Category category, String key, String comment, Integer defaultValue) {
+            super(category, key, comment, defaultValue);
         }
 
         public void copyTo(Configuration target) {
@@ -114,7 +116,7 @@ abstract public class Settings implements Streamable {
             set = input.readBoolean();
             value = input.readInt();
             defaultValue = input.readInt();
-            if ((oldValue ==null&&value()!=null)||(!oldValue.equals(value()))) {
+            if ((oldValue == null && value() != null) || (!oldValue.equals(value()))) {
                 update(value());
             }
         }
@@ -129,8 +131,8 @@ abstract public class Settings implements Streamable {
 
     protected class StringSetting extends Setting<String> {
 
-        public StringSetting(Category category, String key,String comment, String defaultValue) {
-            super(category,key,comment,defaultValue);
+        public StringSetting(Category category, String key, String comment, String defaultValue) {
+            super(category, key, comment, defaultValue);
         }
 
         public void copyTo(Configuration target) {
@@ -153,7 +155,7 @@ abstract public class Settings implements Streamable {
             set = input.readBoolean();
             value = input.readUTF();
             defaultValue = input.readUTF();
-            if ((oldValue ==null&&value()!=null)||(!oldValue.equals(value()))) {
+            if ((oldValue == null && value() != null) || (!oldValue.equals(value()))) {
                 update(value());
             }
         }
@@ -168,8 +170,8 @@ abstract public class Settings implements Streamable {
 
     protected class DoubleSetting extends Setting<Double> {
 
-        public DoubleSetting(Category category, String key,String comment, Double defaultValue) {
-            super(category,key,comment,defaultValue);
+        public DoubleSetting(Category category, String key, String comment, Double defaultValue) {
+            super(category, key, comment, defaultValue);
         }
 
         public void copyTo(Configuration target) {
@@ -192,7 +194,7 @@ abstract public class Settings implements Streamable {
             set = input.readBoolean();
             value = input.readDouble();
             defaultValue = input.readDouble();
-            if ((oldValue ==null&&value()!=null)||(!oldValue.equals(value()))) {
+            if ((oldValue == null && value() != null) || (!oldValue.equals(value()))) {
                 update(value());
             }
         }
@@ -204,7 +206,7 @@ abstract public class Settings implements Streamable {
             output.writeDouble(defaultValue);
         }
     }
-    
+
     abstract protected class Setting<Type> implements Mutable<Type>, Streamable {
         protected boolean set = false;
         protected Type value;
@@ -214,7 +216,7 @@ abstract public class Settings implements Streamable {
         final String comment;
         private final Trackers<Type> trackers = new Trackers<Type>();
 
-        Setting(Category category, String key,String comment, Type defaultValue) {
+        Setting(Category category, String key, String comment, Type defaultValue) {
             this.category = category;
             this.key = key;
             this.comment = comment;
@@ -245,7 +247,10 @@ abstract public class Settings implements Streamable {
             trackers.stopInforming(dontInform);
         }
 
-        public boolean hasBeenSet() {return set;}
+        public boolean hasBeenSet() {
+            return set;
+        }
+
         public boolean exists(Configuration tested) {
             return tested.hasKey(category.name, key);
         }
@@ -258,12 +263,12 @@ abstract public class Settings implements Streamable {
             } else {
                 value = defaultValue;
             }
-            if ((oldValue ==null&&value()!=null)) {
-                ConfigManager.logger.info("updating null to "+value().toString());
+            if ((oldValue == null && value() != null)) {
+                ConfigManager.logger.info("updating null to " + value().toString());
                 update(value());
             } else {
                 if (!oldValue.equals(value())) {
-                    ConfigManager.logger.info("updating "+this.key+ " to "+value().toString());
+                    ConfigManager.logger.info("updating " + this.key + " to " + value().toString());
                     update(value());
                 }
             }
@@ -274,39 +279,46 @@ abstract public class Settings implements Streamable {
         }
 
         abstract public Property propertyFrom(Configuration source);
+
         abstract public Type dataFrom(Property source);
+
         abstract public void copyTo(Configuration target);
     }
 
     public class Category {
         public final String name;
         private String description;
-        public Category(String name) {this.name = name;}
+
+        public Category(String name) {
+            this.name = name;
+        }
+
         public String description() {
-           return description;
-        }
-        public Mutable<Boolean> booleanSetting(String key,String comment, boolean defaultValue){
-            return new BooleanSetting(this,key,comment,defaultValue);
+            return description;
         }
 
-        public Mutable<Boolean> booleanSetting(String key, boolean defaultValue,String comment){
-            return new BooleanSetting(this,key,comment,defaultValue);
+        public Mutable<Boolean> booleanSetting(String key, String comment, boolean defaultValue) {
+            return new BooleanSetting(this, key, comment, defaultValue);
         }
 
-        public Mutable<Integer> intSetting(String key, Integer defaultValue,String comment){
-            return new IntSetting(this,key,comment,defaultValue);
+        public Mutable<Boolean> booleanSetting(String key, boolean defaultValue, String comment) {
+            return new BooleanSetting(this, key, comment, defaultValue);
         }
 
-        public Mutable<Integer> intSetting(String key, Integer defaultValue){
-            return new IntSetting(this,key,"",defaultValue);
+        public Mutable<Integer> intSetting(String key, Integer defaultValue, String comment) {
+            return new IntSetting(this, key, comment, defaultValue);
         }
 
-        public Mutable<String> stringSetting(String key, String defaultValue,String comment){
-            return new StringSetting(this,key,comment,defaultValue);
+        public Mutable<Integer> intSetting(String key, Integer defaultValue) {
+            return new IntSetting(this, key, "", defaultValue);
         }
 
-        public Mutable<Double> doubleSetting(String key, Double defaultValue,String comment){
-            return new DoubleSetting(this,key,comment,defaultValue);
+        public Mutable<String> stringSetting(String key, String defaultValue, String comment) {
+            return new StringSetting(this, key, comment, defaultValue);
+        }
+
+        public Mutable<Double> doubleSetting(String key, Double defaultValue, String comment) {
+            return new DoubleSetting(this, key, comment, defaultValue);
         }
     }
 

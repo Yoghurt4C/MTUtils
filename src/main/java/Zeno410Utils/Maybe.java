@@ -1,4 +1,3 @@
-
 package Zeno410Utils;
 // code by Nat Price
 
@@ -13,9 +12,13 @@ import java.util.Iterator;
 
 public abstract class Maybe<T> implements Iterable<T> {
     public abstract boolean isKnown();
+
     public abstract T otherwise(T defaultValue);
+
     public abstract Maybe<T> otherwise(Maybe<T> maybeDefaultValue);
+
     public abstract <U> Maybe<U> to(Function<? super T, ? extends U> mapping);
+
     public abstract Maybe<Boolean> query(Predicate<? super T> mapping);
 
     public static <T> Maybe<T> unknown() {
@@ -26,7 +29,7 @@ public abstract class Maybe<T> implements Iterable<T> {
             }
 
             public Iterator<T> iterator() {
-                return Collections.<T>emptyList().iterator();
+                return Collections.emptyIterator();
             }
 
             @Override
@@ -99,7 +102,7 @@ public abstract class Maybe<T> implements Iterable<T> {
 
         @Override
         public <U> Maybe<U> to(Function<? super T, ? extends U> mapping) {
-            return definitely((U)mapping.apply(theValue));
+            return definitely(mapping.apply(theValue));
         }
 
         @Override
@@ -135,6 +138,7 @@ public abstract class Maybe<T> implements Iterable<T> {
 
     public static class MaybeStreamer<Type> extends Streamer<Maybe<Type>> {
         private final Streamer<Type> streamer;
+
         public MaybeStreamer(Streamer<Type> streamer) {
             this.streamer = streamer;
         }

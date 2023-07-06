@@ -39,31 +39,30 @@ public class UBC {
 
             for (JsonElement obj : array) {
                 jsonObject = obj.getAsJsonObject();
-                String part[] = jsonObject.get("nameid").getAsString().split(":");
+                String[] part = jsonObject.get("nameid").getAsString().split(":");
                 Block oreBlock = GameRegistry.findBlock(part[0], part[1]);
                 String texturepath;
                 String name;
 
                 if (oreBlock != null) {
-                    if (part.length == 3){
+                    if (part.length == 3) {
 
-                        if(jsonObject.get("texturepath") != null)
+                        if (jsonObject.get("texturepath") != null)
                             texturepath = jsonObject.get("texturepath").getAsString();
-                        else texturepath = oreBlock.getIcon(1,Integer.parseInt(part[2])).getIconName();
+                        else texturepath = oreBlock.getIcon(1, Integer.parseInt(part[2])).getIconName();
 
-                        if(jsonObject.get("name") != null)
+                        if (jsonObject.get("name") != null)
                             name = jsonObject.get("name").getAsString();
-                        else name = new ItemStack(oreBlock,1,Integer.parseInt(part[2])).getDisplayName();
+                        else name = new ItemStack(oreBlock, 1, Integer.parseInt(part[2])).getDisplayName();
 
                         registerOreBlock(oreBlock, Integer.parseInt(part[2]), texturepath, name, event);
-                    }
-                    else if (part.length == 2){
+                    } else if (part.length == 2) {
 
-                        if(jsonObject.get("texturepath") != null)
+                        if (jsonObject.get("texturepath") != null)
                             texturepath = jsonObject.get("texturepath").getAsString();
-                        else texturepath = oreBlock.getIcon(1,0).getIconName();
+                        else texturepath = oreBlock.getIcon(1, 0).getIconName();
 
-                        if(jsonObject.get("name") != null)
+                        if (jsonObject.get("name") != null)
                             name = jsonObject.get("name").getAsString();
                         else name = new ItemStack(oreBlock).getDisplayName();
 
@@ -106,7 +105,7 @@ public class UBC {
                     Block.class, int.class, String.class, MinecraftName.class, FMLPreInitializationEvent.class);
             method.setAccessible(true);
             method.invoke(UBAPIHook.ubAPIHook.ubOreTexturizer, block, meta, texturename,
-                    (MinecraftName) new MinecraftUBCName(block.getUnlocalizedName(), name), event);
+                    new MinecraftUBCName(block.getUnlocalizedName(), name), event);
         } catch (Exception e) {
             if (e instanceof UBOreTexturizer.BlocksAreAlreadySet)
                 FMLLog.warning(placeholder.getDisplayName() + " is already registered with UBC. Skipping");

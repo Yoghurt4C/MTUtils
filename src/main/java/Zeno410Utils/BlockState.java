@@ -1,10 +1,8 @@
-
 package Zeno410Utils;
 
 import net.minecraft.block.Block;
 
 /**
- *
  * @author Zeno410
  */
 public class BlockState {

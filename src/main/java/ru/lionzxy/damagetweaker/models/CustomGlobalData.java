@@ -1,11 +1,11 @@
 package ru.lionzxy.damagetweaker.models;
 
-import java.io.File;
-
 import cpw.mods.fml.common.Loader;
 import minetweaker.api.data.IData;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+
+import java.io.File;
 
 /**
  * Created by lionzxy on 6/8/16.
@@ -14,8 +14,8 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class CustomGlobalData extends CustomData {
     private static CustomGlobalData instance = null;
 
-    public static CustomGlobalData getInstance(){
-        if(instance == null)
+    public static CustomGlobalData getInstance() {
+        if (instance == null)
             instance = new CustomGlobalData();
         return instance;
 
@@ -46,7 +46,7 @@ public class CustomGlobalData extends CustomData {
     }
 
     @ZenMethod
-    public static boolean exists(){
+    public static boolean exists() {
         return getInstance().getFile().exists();
     }
 }

@@ -1,10 +1,8 @@
 package ru.lionzxy.damagetweaker.handlers;
 
 import minetweaker.api.data.IData;
-import minetweaker.api.formatting.IFormattedText;
 import minetweaker.mc1710.data.NBTConverter;
 import net.minecraft.nbt.*;
-import net.minecraft.server.MinecraftServer;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -18,20 +16,70 @@ import java.util.Map;
 @ZenClass("mods.MTUtils.NBT")
 public class NBTHandlers {
 
-    @ZenMethod public static boolean    isExists(IData nbt, String path) {              return getTagByPath(nbt, path) != null;}
-    @ZenMethod public static Map        readMap(IData nbt, String path) {        return getTagByPath(nbt, path).asMap();}
-    @ZenMethod public static short      readShort(IData nbt, String path) {      return getTagByPath(nbt, path).asShort();}
-    @ZenMethod public static String     readString(IData nbt, String path) {     return getTagByPath(nbt, path).asString();}
-    @ZenMethod public static int        readInt(IData nbt, String path) {        return getTagByPath(nbt, path).asInt();}
-    @ZenMethod public static int[]      readIntArray(IData nbt, String path) {   return getTagByPath(nbt, path).asIntArray();}
-    @ZenMethod public static List       readList(IData nbt, String path) {       return getTagByPath(nbt, path).asList();}
-    @ZenMethod public static long       readLong(IData nbt, String path) {       return getTagByPath(nbt, path).asLong();}
-    @ZenMethod public static byte       readByte(IData nbt, String path) {       return getTagByPath(nbt, path).asByte();}
-    @ZenMethod public static byte[]     readByteArray(IData nbt, String path) {  return getTagByPath(nbt, path).asByteArray();}
-    @ZenMethod public static double     readDouble(IData nbt, String path) {     return getTagByPath(nbt, path).asDouble();}
-    @ZenMethod public static float      readFloat(IData nbt, String path) {      return getTagByPath(nbt, path).asFloat();}
-    @ZenMethod public static boolean    readBool(IData nbt, String path) {       return getTagByPath(nbt, path).asBool();}
+    @ZenMethod
+    public static boolean isExists(IData nbt, String path) {
+        return getTagByPath(nbt, path) != null;
+    }
 
+    @ZenMethod
+    public static Map readMap(IData nbt, String path) {
+        return getTagByPath(nbt, path).asMap();
+    }
+
+    @ZenMethod
+    public static short readShort(IData nbt, String path) {
+        return getTagByPath(nbt, path).asShort();
+    }
+
+    @ZenMethod
+    public static String readString(IData nbt, String path) {
+        return getTagByPath(nbt, path).asString();
+    }
+
+    @ZenMethod
+    public static int readInt(IData nbt, String path) {
+        return getTagByPath(nbt, path).asInt();
+    }
+
+    @ZenMethod
+    public static int[] readIntArray(IData nbt, String path) {
+        return getTagByPath(nbt, path).asIntArray();
+    }
+
+    @ZenMethod
+    public static List readList(IData nbt, String path) {
+        return getTagByPath(nbt, path).asList();
+    }
+
+    @ZenMethod
+    public static long readLong(IData nbt, String path) {
+        return getTagByPath(nbt, path).asLong();
+    }
+
+    @ZenMethod
+    public static byte readByte(IData nbt, String path) {
+        return getTagByPath(nbt, path).asByte();
+    }
+
+    @ZenMethod
+    public static byte[] readByteArray(IData nbt, String path) {
+        return getTagByPath(nbt, path).asByteArray();
+    }
+
+    @ZenMethod
+    public static double readDouble(IData nbt, String path) {
+        return getTagByPath(nbt, path).asDouble();
+    }
+
+    @ZenMethod
+    public static float readFloat(IData nbt, String path) {
+        return getTagByPath(nbt, path).asFloat();
+    }
+
+    @ZenMethod
+    public static boolean readBool(IData nbt, String path) {
+        return getTagByPath(nbt, path).asBool();
+    }
 
 
     @ZenMethod
